@@ -1,6 +1,6 @@
 //event listener for city search button
 $('#cityBtn').on('click', event => {
-    event.preventDefault()
+    event.preventDefault()        
     //fetch API current weather data 
     $.get(`https://api.openweathermap.org/data/2.5/weather?q=${$('#cityInput').val()}&appid=e1a3a82b0d99af98b67a1576afbd3436&units=imperial`)
     .then(current => {
@@ -14,6 +14,12 @@ $('#cityBtn').on('click', event => {
     $.get(`https://api.openweathermap.org/data/2.5/forecast?q=${$('#cityInput').val()}&appid=e1a3a82b0d99af98b67a1576afbd3436&units=imperial`)
     .then(forecast => {
         console.log(forecast)
+        //clear search input
+        $('#cityInput').val('');
+        //clear previous current weather content
+        $('#currentForecast').empty();
+        //clear previous forecast weather content
+        $('#futureForecast').empty();
     //create div for current weather display
     let currentWeatherElem = $('<div>')
     //adding class of card to newly created current weather div
@@ -52,61 +58,86 @@ $('#cityBtn').on('click', event => {
     fiveDayForecastElem.attr('style', 'width:70rem',)
     fiveDayForecastElem.attr('style', 'padding:1rem',)
     fiveDayForecastElem.html(`
-        <div class="card-body">
+        <div class="col-md-9">
         <h4 class="card-title">5-Day Forecast:</h4>
-        <br>
+        <div class="row">
+        <div class="card-body">
             <h5 class="card-title">${forecast.list[2].dt_txt.split(" ")[0]}</h5>
-                <img src="http://openweathermap.org/img/wn/${forecast.list[2].weather[0].icon}@2x.png"
+                <img src="http://openweathermap.org/img/wn/${forecast.list[0].weather[0].icon}@2x.png"
                 attr="SameSite" alt="${current.name}">
                 <p class="card-text">
-                Temp: ${forecast.list[2].main.temp}°F
+                Temp: ${forecast.list[0].main.temp}°F
                 <br>
-                Humidity: ${forecast.list[2].main.humidity}%
+                Humidity: ${forecast.list[0].main.humidity}%
                 </p>
         </div>
         <div class="card-body">
-        <h5 class="card-title">${forecast.list[6].dt_txt.split(" ")[0]}</h5>
-            <img src="http://openweathermap.org/img/wn/${forecast.list[6].weather[0].icon}@2x.png"
+        <h5 class="card-title">${forecast.list[8].dt_txt.split(" ")[0]}</h5>
+            <img src="http://openweathermap.org/img/wn/${forecast.list[8].weather[0].icon}@2x.png"
             attr="SameSite" alt="${current.name}">
             <p class="card-text">
-            Temp: ${forecast.list[6].main.temp}°F
+            Temp: ${forecast.list[8].main.temp}°F
             <br>
-            Humidity: ${forecast.list[6].main.humidity}%
+            Humidity: ${forecast.list[8].main.humidity}%
             </p>
         </div>
         <div class="card-body">
-        <h5 class="card-title">${forecast.list[10].dt_txt.split(" ")[0]}</h5>
-            <img src="http://openweathermap.org/img/wn/${forecast.list[10].weather[0].icon}@2x.png"
+        <h5 class="card-title">${forecast.list[16].dt_txt.split(" ")[0]}</h5>
+            <img src="http://openweathermap.org/img/wn/${forecast.list[16].weather[0].icon}@2x.png"
             attr="SameSite" alt="${current.name}">
             <p class="card-text">
-            Temp: ${forecast.list[10].main.temp}°F
+            Temp: ${forecast.list[16].main.temp}°F
             <br>
-            Humidity: ${forecast.list[10].main.humidity}%
+            Humidity: ${forecast.list[16].main.humidity}%
             </p>
         </div>
         <div class="card-body">
-        <h5 class="card-title">${forecast.list[14].dt_txt.split(" ")[0]}</h5>
-            <img src="http://openweathermap.org/img/wn/${forecast.list[14].weather[0].icon}@2x.png"
+        <h5 class="card-title">${forecast.list[24].dt_txt.split(" ")[0]}</h5>
+            <img src="http://openweathermap.org/img/wn/${forecast.list[24].weather[0].icon}@2x.png"
             attr="SameSite" alt="${current.name}">
             <p class="card-text">
-            Temp: ${forecast.list[14].main.temp}°F
+            Temp: ${forecast.list[24].main.temp}°F
             <br>
-            Humidity: ${forecast.list[14].main.humidity}%
+            Humidity: ${forecast.list[24].main.humidity}%
             </p>
         </div>
         <div class="card-body">
-        <h5 class="card-title">${forecast.list[18].dt_txt.split(" ")[0]}</h5>
-            <img src="http://openweathermap.org/img/wn/${forecast.list[18].weather[0].icon}@2x.png"
+        <h5 class="card-title">${forecast.list[32].dt_txt.split(" ")[0]}</h5>
+            <img src="http://openweathermap.org/img/wn/${forecast.list[32].weather[0].icon}@2x.png"
             attr="SameSite" alt="${current.name}">
             <p class="card-text">
-            Temp: ${forecast.list[18].main.temp}°F
+            Temp: ${forecast.list[32].main.temp}°F
             <br>
-            Humidity: ${forecast.list[18].main.humidity}%
+            Humidity: ${forecast.list[32].main.humidity}%
             </p>
-        </div>
+        </div></div></div>
     `)
     $('#currentForecast').append(currentWeatherElem)
     $('#futureForecast').append(fiveDayForecastElem)
-    })})})
+    })})})     
+ 
+})
+//make list clickable and searchable
+    $('.searchHistory').on('click', 'li', function() {
+    cityInput($(this).text());
+//make row for each history item
+    function makeItem(text) {
+    let li = $('<li>').addClass('list-group-item list-group-item-action').text(text);
+    $('.searchHistory').append(li);
+    }
+//create history section and links for this search
+    if (searchHistory.indexOf(cityInput) === -1) {
+    searchHistory.push(cityInput);
+    window.localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
+    makeItem(cityInput);
+    }  
+// get current history, if available
+let searchHistory = JSON.parse(window.localStorage.getItem('seachHistory')) || [];
 
+if (searchHistory.length > 0) {
+    cityInput(searchHistory[searchHistory.length-1]);
+}
+for (let i = 0; i < searchHistory.length; i++) {
+    makeRow(searchHistory[i]);
+}
 })

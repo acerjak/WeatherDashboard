@@ -9,12 +9,23 @@
 .city-form {
     border: 1px solid #ced4da;
     border-radius: .25rem;
+    padding: 5px;
+    margin: 5px;
 }
 .form-group {
     background-color: rgb(243, 241, 241);
+}
+#cityBtn {
+    margin: 2px;
+    margin-top: 0px;
 }
 .searchLabel {
     font-size: 18px;
     font-weight: 500;
     margin: 0px;
+    padding: 5px;
+    margin-left: 5px;
+}
+.card-body {
+    align-content: top;
 }

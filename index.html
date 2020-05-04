@@ -13,7 +13,8 @@
             <form class="col-md-3 form-group" id="searchCity">
                 <label class="searchLabel">Search for a City:</label>
                 <br>
-                <input type="text" id="cityInput" class="city-form"><button class="btn btn-primary" id="cityBtn">Search</button>
+                <input type="text" id="cityInput" class="city-form"><button class="btn btn-primary" id="cityBtn"><span class="iconify" data-icon="entypo-magnifying-glass" data-inline="false"></span></button>
+                <ul class="list-group searchHistory"></ul>
             </form>
             <div class="col-md-9" id="currentForecast"></div>
         </div>
@@ -21,6 +22,7 @@
             <div class="col-md-3"></div>
             <div class="col-md-9" id="futureForecast"></div>
         </div>
+        <script src="https://code.iconify.design/1/1.0.6/iconify.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.5.0.js" 
         integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc="
         crossorigin="anonymous"></script>
