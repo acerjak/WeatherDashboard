@@ -1,0 +1,20 @@
+.navBar {
+    text-align: center;
+    background-color: black;
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+    padding: 5px;
+}
+.city-form {
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+}
+.form-group {
+    background-color: rgb(243, 241, 241);
+}
+.searchLabel {
+    font-size: 18px;
+    font-weight: 500;
+    margin: 0px;
+}

@@ -1,0 +1,19 @@
+ <!-- https://maps.openweathermap.org/maps/2.0/weather/TA2/1/1/1?date=&opacity=0.9&fill_bound=true&appid=e1a3a82b0d99af98b67a1576afbd3436 -->
+
+<!-- URL for API current weather forecast in Brea -->
+https://api.openweathermap.org/data/2.5/weather?q=${$('#cityInput').val()}&appid=e1a3a82b0d99af98b67a1576afbd3436
+
+<!-- URL for API 5 day forecast in cityInput-->
+https://api.openweathermap.org/data/2.5/forecast?q=${$('#cityInput').val()}&appid=e1a3a82b0d99af98b67a1576afbd3436
+
+<!-- URL for API current weather by hour -->
+https://api.openweathermap.org/data/2.5/forecast/daily?q=${$('#cityInput').val()}&cnt={cnt}&appid=e1a3a82b0d99af98b67a1576afbd3436
+
+<!-- URL for API UV Index by lat and lon for 1 day -->
+https://api.openweathermap.org/data/2.5/uvi?appid=e1a3a82b0d99af98b67a1576afbd3436&lat=${current.coord[1]}&lon=${current.coord[0]}
+
+<!-- URL for API UV Index by lat and lon for 5 days-->
+https://api.openweathermap.org/data/2.5/uvi/forecast?appid={appid}&lat=${current.coord[1]}&lon=${current.coord[0]}&cnt=5
+
+<!-- get first of array for date -->
+${weather.list[0].dt_txt.split(" ")[0]}
