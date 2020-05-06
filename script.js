@@ -41,6 +41,20 @@ $('#cityBtn').on('click', event => {
     currentWeatherElem.attr('style', 'width:70rem',)
     currentWeatherElem.attr('style', 'padding:1rem',)   
     //writing HTML into the newly created current weather div
+    // add green color btn to UV Index
+    let backgroundColor = '';
+if (index.value < 3) {
+    console.log('green')
+    backgroundColor = 'green'
+    //add yellow color btn to UV Index
+} else if (index.value < 7) {
+    console.log('yellow')
+    backgroundColor = 'yellow'
+    //add red color btn to UV index
+} else {
+    console.log('red')
+    backgroundColor = 'red'
+}   
     currentWeatherElem.html(`
         <h5 class="card-title">
         ${current.name} 
@@ -58,26 +72,11 @@ $('#cityBtn').on('click', event => {
                 <li class="list-group-item">
                 Wind Speed: ${current.wind.speed} MPH
                 </li>
-                <li class="list-group-item" value="${index.value}" id="uv">
+                <li class="list-group-item" style="background-color:${backgroundColor}" value="${index.value}" id="uv">
                 UV Index: ${index.value}
                 </li>
             </ul>`
         ) 
-    //define variable for uv
-    let uv = $('#uv');
-    // add green color btn to UV Index
-if (uv.value < 3) {
-    console.log('green')
-    uv.addClass('success');
-    //add yellow color btn to UV Index
-} else if (uv.value < 7) {
-    console.log('yellow')
-    uv.addClass('warning');
-    //add red color btn to UV index
-} else {
-    console.log('red')
-    uv.addClass('danger');
-}   
     //create div for 5 day forecast
     let fiveDayForecastElem = $('<div>')
     //add classes to this div
@@ -179,6 +178,20 @@ if (uv.value < 3) {
     //adding width style to newly created current weather div
     currentWeatherElem.attr('style', 'width:70rem',)
     currentWeatherElem.attr('style', 'padding:1rem',)
+        // add green color btn to UV Index
+        let backgroundColor = '';
+        if (index.value < 3) {
+            console.log('green')
+            backgroundColor = 'green'
+            //add yellow color btn to UV Index
+        } else if (index.value < 7) {
+            console.log('yellow')
+            backgroundColor = 'yellow'
+            //add red color btn to UV index
+        } else {
+            console.log('red')
+            backgroundColor = 'red'
+        }  
     //writing HTML into the newly created current weather div
     currentWeatherElem.html(`
         <h5 class="card-title">
@@ -197,7 +210,7 @@ if (uv.value < 3) {
                 <li class="list-group-item">
                 Wind Speed: ${current.wind.speed} MPH
                 </li>
-                <li class="list-group-item">
+                <li class="list-group-item" style="background-color:${backgroundColor}" value="${index.value}" id="uv">
                 UV Index: ${index.value}
                 </li>
             </ul>`
