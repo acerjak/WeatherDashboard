@@ -144,6 +144,7 @@ if (uv.value < 3) {
     `)
     $('#currentForecast').append(currentWeatherElem)
     $('#futureForecast').append(fiveDayForecastElem)
+    $('#uv').append(uv)
     })})})     
     getHistory.push($('#cityInput').val());
     console.log(getHistory)
@@ -207,7 +208,22 @@ if (uv.value < 3) {
     fiveDayForecastElem.addClass('row', 'card', 'bg-primary',)
     //add style to this div
     fiveDayForecastElem.attr('style', 'width:70rem',)
-    fiveDayForecastElem.attr('style', 'padding:1rem',)
+    fiveDayForecastElem.attr('style', 'padding:1rem',)        
+    //define variable for uv
+        let uv = $('#uv');
+        // add green color btn to UV Index
+    if (uv.value < 3) {
+        console.log('green')
+        uv.addClass('success');
+        //add yellow color btn to UV Index
+    } else if (uv.value < 7) {
+        console.log('yellow')
+        uv.addClass('warning');
+        //add red color btn to UV index
+    } else {
+        console.log('red')
+        uv.addClass('danger');
+    }   
     fiveDayForecastElem.html(`
         <div class="col-md-9">
         <h4 class="card-title">5-Day Forecast:</h4>
@@ -265,5 +281,8 @@ if (uv.value < 3) {
     `)
     $('#currentForecast').append(currentWeatherElem)
     $('#futureForecast').append(fiveDayForecastElem)
+    $('#uv').append(uv)
     })})})
 })
+
+    
